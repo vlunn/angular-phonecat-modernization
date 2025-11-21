@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IComponentController, IComponentOptions, IControllerConstructor } from 'angular';
 import { PhoneData, Phone } from '../core/phone/phone.service';
 
 @Component({
@@ -10,9 +9,7 @@ export class PhoneListComponent implements OnInit {
     phones: PhoneData[] = [];
     orderProp: string;
 
-    constructor(private Phone: Phone) {
-        'ngInject';
-    }
+    constructor(private Phone: Phone) { }
 
     public ngOnInit(): void {
         this.Phone.query({}, (phones: PhoneData[]) => {

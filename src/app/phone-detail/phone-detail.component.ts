@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IComponentController, IComponentOptions, IControllerConstructor } from 'angular';
+import { ActivatedRoute } from '@angular/router';
 import { Phone, PhoneData } from '../core/phone/phone.service';
 
 @Component({
@@ -10,12 +10,11 @@ export class PhoneDetailComponent implements OnInit {
     private mainImageUrl: string;
     private phone: PhoneData;
 
-    constructor(private Phone: Phone) {
-        'ngInject';
-    }
+    constructor(private activatedRoute: ActivatedRoute, private Phone: Phone) { }
 
     public ngOnInit(): void {
-        this.Phone.get({ phoneId: this.$routeParams.phoneId }, (phone: PhoneData) => {
+        const phoneId = this.activatedRoute.snapshot.paramMap.get('phoneId');
+        this.Phone.get({ phoneId: phoneId }, (phone: PhoneData) => {
             this.phone = phone;
             this.setImage(phone.images[0]);
         });

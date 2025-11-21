@@ -1,5 +1,4 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { IHttpService } from 'angular';
 import { Injectable } from '@angular/core';
 'use strict';
 
@@ -11,11 +10,12 @@ export interface PhoneData {
 
 @Injectable()
 export class Phone {
-    constructor(private $http: IHttpService) {}
+    constructor(private $http: HttpClient) {}
     get(params?: any, success?: Function, error?: Function) {
         return this.$http
             .get<PhoneData>(`phones/${params.phoneId}.json`)
-            .then(({ data }) => {
+            .toPromise()
+            .then((data) => {
                 if (success) success(data);
 
                 return data;
@@ -28,7 +28,8 @@ export class Phone {
     query(params?: any, success?: Function, error?: Function) {
         return this.$http
             .get<PhoneData[]>(`phones/phones.json`)
-            .then(({ data }) => {
+            .toPromise()
+            .then((data) => {
                 if (success) success(data);
 
                 return data;
