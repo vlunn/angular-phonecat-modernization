@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 'use strict';
 
@@ -13,7 +13,7 @@ export class Phone {
     constructor(private $http: HttpClient) {}
     get(params?: any, success?: Function, error?: Function) {
         return this.$http
-            .get<PhoneData>(`phones/${params.phoneId}.json`)
+            .get<PhoneData>(`assets/phones/${params.phoneId}.json`)
             .toPromise()
             .then((data) => {
                 if (success) success(data);
@@ -27,7 +27,7 @@ export class Phone {
 
     query(params?: any, success?: Function, error?: Function) {
         return this.$http
-            .get<PhoneData[]>(`phones/phones.json`)
+            .get<PhoneData[]>(`assets/phones/phones.json`)
             .toPromise()
             .then((data) => {
                 if (success) success(data);
