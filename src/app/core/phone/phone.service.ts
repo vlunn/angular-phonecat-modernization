@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-'use strict';
 
 export interface PhoneData {
     name: string;
